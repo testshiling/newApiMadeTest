@@ -1,0 +1,8 @@
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+December 11, 2019 - 12:04:31
+Django version 2.2.1, using settings 'apimadetest.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
