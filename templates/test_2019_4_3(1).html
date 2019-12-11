@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<header><meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+</header>
+<body>
+           <strong>url: <input style = "width:580px;" id="url" name="url" type="text" placeholder="url" value=""></strong><br><br>
+           <strong>参数1 <input style = "width:183px;" id="param1" name="par1" type="text" placeholder="参数1名" value=""></strong>
+           <strong>: <input style = "width:183px;" id="par1" name="par1" type="text" placeholder="参数1值" value=""></strong><br>
+           <strong>参数2 <input style = "width:180px;" id="param2" name="par2" type="text" placeholder="参数2名"  value=""></strong>
+           <strong>: <input style = "width:180px;" id="par2" name="par2" type="text" placeholder="参数2值"  value=""></strong><br><br>
+           <button id="sum" onclick="begin()" style = "width:100px;height: 30px">登录</button>
+<script>
+    function begin() {
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        var url = document.getElementById("url").value;
+        var param1 = document.getElementById("param1").value;
+        var par1 = document.getElementById("par1").value;
+        var param2 = document.getElementById("param2").value;
+        var par2 = document.getElementById("par2").value;
+
+        httpRequest.open('GET', 'http://'+url+'/?'+param1+'='+par1+'&'+param2+'='+par2, true);//第二步：打开连接  将请求参数写在url中  ps:"./Ptest.php?name=test&nameone=testone"
+        httpRequest.setRequestHeader('Origin','http://127.0.0.1');
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                var json = httpRequest.responseText;//获取到json字符串，还需解析
+                console.log(json);
+                alert('登录成功')
+            }
+        };
+    }
+</script>
+
+
+</body>
+</html>
