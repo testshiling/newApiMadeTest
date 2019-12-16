@@ -1,0 +1,4 @@
+Django==2.0.3
+requests==2.18.4
+PyMySQL==0.8.1
+djangorestframework==3.11.0
