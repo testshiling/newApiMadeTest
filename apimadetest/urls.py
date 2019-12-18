@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^api_login_get', login_get),
     url(r'^api_login_post/', login_post),
     url(r'^api_demo/', api_demo),
+    url(r'^pushAPIInfo/', pushAPIInfo),
     url(r'^', welcome),
 ]

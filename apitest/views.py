@@ -496,7 +496,14 @@ def cancel_order(request):
                 return Response({"status_code": 400, "msg": "订单已被取消或订单异常"})
 
 
-
+@csrf_exempt
+@api_view(http_method_names=['POST'])
+@permission_classes((permissions.AllowAny,))
+def pushAPIInfo(request):
+    data = json.loads(request.body)
+    print(data)
+    print(type(data))
+    return Response({"status_code": 200, "msg": "信息接收成功"})
 
 
 
