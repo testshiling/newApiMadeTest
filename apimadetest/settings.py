@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'newApiMadeTest.wsgi.application'
+WSGI_APPLICATION = 'apimadetest.wsgi.application'
 
 
 # Database
