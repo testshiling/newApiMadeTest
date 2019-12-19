@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'apimadetest',
         'USER': 'root',
-        'PASSWORD': 'luoshiling',
+        'PASSWORD': 'Luoshiling123456.',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
