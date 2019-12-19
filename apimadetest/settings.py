@@ -83,11 +83,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'apimadetest',
         'USER': 'root',
-        'PASSWORD': 'Luoshiling123456.',
+        'PASSWORD': 'luoshiling',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
+
+#Mac 本地密码：luoshiling
+#阿里云新密码：Luoshiling123456.
 
 
 # Password validation

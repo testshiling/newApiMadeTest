@@ -15,11 +15,11 @@ from apitest.others import others_pay_order_true
 
 
 
-@csrf_exempt
-@api_view(http_method_names=['get'])
-@permission_classes((permissions.AllowAny,))
-def welcome(request):
-    return Response("一起来学习接口测试呀！")
+# @csrf_exempt
+# @api_view(http_method_names=['get'])
+# @permission_classes((permissions.AllowAny,))
+# def welcome(request):
+#     return Response("一起来学习接口测试呀！")
 
 # api_demo
 @csrf_exempt
