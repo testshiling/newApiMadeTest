@@ -84,8 +84,8 @@ DATABASES = {
         'NAME': 'apimadetest',
         'USER': 'root',
         'PASSWORD': 'Luoshiling123456.',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'HOST': '172.17.59.87',
+        'PORT': '3307',
     }
 }
 
