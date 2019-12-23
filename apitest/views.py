@@ -506,7 +506,113 @@ def pushAPIInfo(request):
     return Response({"status_code": 200, "msg": "信息接收成功"})
 
 
+#获取房源信息接口
+@csrf_exempt
+@api_view(http_method_names=['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_lodgeunitInfo(request):
+    """
+    :param request:offset,limit,luId,type(list/all) 参数可选
+    :return:
+    """
+    offset = request.GET.get("offset")
+    if not offset:
+        offset = 0
+    limit = request.GET.get("limit")
+    if not limit:
+        limit = 10
+    luId = request.GET.get("luId")
+    type = request.GET.get("type")
+    if not type:
+        type = "all"
+    estate = request.GET.get("estate")
+    try:
+        offset = int(offset)
+    except Exception:
+        return Response({"status_code": 400, "msg": "offset必须为整数"})
+    try:
+        limit = int(limit)
+    except Exception:
+        return Response({"status_code": 400, "msg": "limit必须为整数"})
+    if offset < 0:
+        return Response({"status_code": 400, "msg": "offset不能小于0"})
+    if limit < 0:
+        return Response({"status_code": 400, "msg": "limit不能小于0"})
+    if luId:
+        try:
+            lodgeUnitInfo = lodgeunitinfo.objects.filter(id=luId)
+        except Exception:
+            return Response({"status_code": 400, "msg": "luId不存在"})
+    else:
+        lodgeUnitInfo = lodgeunitinfo.objects.filter(estate='valid')[offset:limit]
+    infoData = {"status_code": 200,
+                "content": []}
+    if type == "list":
+        luIdList = lodgeUnitInfo.values_list('id')
+        infoData["length"] = len(luIdList)
+        infoData["content"] = luIdList
+        return Response(infoData)
+    elif type == "all":
+        luIdDataList = lodgeUnitInfo.values()
+        infoData["length"] = len(luIdDataList)
+        infoData["content"] = luIdDataList
+        return Response(infoData)
 
+#获取房源信息接口
+@csrf_exempt
+@api_view(http_method_names=['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_ordertInfo(request):
+    """
+        :param request:offset,limit,luId,type(list/all),estate(valid,done,cancel) 参数可选
+        :return:
+        """
+    offset = request.GET.get("offset")
+    if not offset:
+        offset = 0
+    limit = request.GET.get("limit")
+    if not limit:
+        limit = 10
+    orderId = request.GET.get("orderId")
+    print(orderId)
+    type = request.GET.get("type")
+    if not type:
+        type = "all"
+    estate = request.GET.get("estate")
+    if not estate:
+        estate = "valid"
+    try:
+        offset = int(offset)
+    except Exception:
+        return Response({"status_code": 400, "msg": "offset必须为整数"})
+    try:
+        limit = int(limit)
+    except Exception:
+        return Response({"status_code": 400, "msg": "limit必须为整数"})
+    if offset < 0:
+        return Response({"status_code": 400, "msg": "offset不能小于0"})
+    if limit < 0:
+        return Response({"status_code": 400, "msg": "limit不能小于0"})
+    if orderId:
+        #print(order)
+        try:
+            orderInfo = order.objects.filter(id=orderId)
+        except Exception:
+            return Response({"status_code": 400, "msg": "orderId不存在"})
+    else:
+        orderInfo = order.objects.filter(estate=estate)[offset:limit]
+    infoData = {"status_code": 200,
+                "content": []}
+    if type == "list":
+        orderIdList = orderInfo.values_list('id')
+        infoData["length"] = len(orderIdList)
+        infoData["content"] = orderIdList
+        return Response(infoData)
+    elif type == "all":
+        orderIdDataList = orderInfo.values()
+        infoData["length"] = len(orderIdDataList)
+        infoData["content"] = orderIdDataList
+        return Response(infoData)
 
 
 
