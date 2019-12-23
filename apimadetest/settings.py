@@ -87,6 +87,14 @@ DATABASES = {
         'HOST': '172.17.59.87',
         'PORT': '3307',
     }
+    # 'default': {
+    #         'ENGINE': 'django.db.backends.mysql',
+    #         'NAME': 'apimadetest',
+    #         'USER': 'root',
+    #         'PASSWORD': 'luoshiling',
+    #         'HOST': '127.0.0.1',
+    #         'PORT': '3306',
+    #     }
 }
 
 #Mac 本地密码：luoshiling

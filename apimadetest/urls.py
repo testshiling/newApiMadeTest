@@ -30,6 +30,8 @@ urlpatterns = [
     url(r'^api_login_get', login_get),
     url(r'^api_login_post/', login_post),
     url(r'^api_demo/', api_demo),
+    url(r'^get_lodgeunitInfo', get_lodgeunitInfo),
+    url(r'^get_ordertInfo', get_ordertInfo),
     url(r'^pushAPIInfo/', pushAPIInfo),
     url(r'^', welcome),
 ]
