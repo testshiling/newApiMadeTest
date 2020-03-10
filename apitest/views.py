@@ -12,6 +12,7 @@ import sys
 import datetime
 import threading
 from apitest.others import others_pay_order_true
+import hashlib
 
 
 
@@ -298,6 +299,12 @@ def create_order(request):
     :return:
     """
     data = json.loads(request.body)
+    query = request.GET.get("sign")
+    if  not query:
+        return Response({"status_code": 400, "msg": "sign必传"})
+    str_md5 = hashlib.md5(b'admin').hexdigest()
+    if str_md5 != query:
+        return Response({"status_code": 400, "msg": "验签失败"})
     if "luid" not in data:
         return Response({"status_code": 400, "msg": "luid必传"})
     elif "guestnum" not in data:
