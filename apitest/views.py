@@ -286,7 +286,8 @@ def add_lodgeinfo(request):
 @csrf_exempt
 @api_view(http_method_names=['POST'])
 @permission_classes((permissions.AllowAny,))
-def create_order(request):
+def create_order(request):#这个是创建订单接口，request接受请求实例，里面包含
+                            #本次请求所有信息；
     """
     参数示例：
     order_info = {
@@ -298,12 +299,17 @@ def create_order(request):
     :param request:
     :return:
     """
-    data = json.loads(request.body)
-    query = request.GET.get("sign")
-    if  not query:
+    data = json.loads(request.body)#获取post-body请求体，可以忽略
+    query = request.GET.get("sign")#这里获取url中的sign值，
+    if  not query:#做个非空判断
         return Response({"status_code": 400, "msg": "sign必传"})
-    str_md5 = hashlib.md5(b'admin').hexdigest()
-    if str_md5 != query:
+    str_md5 = hashlib.md5(b'admin').hexdigest()#这步是使用约定好的字符串
+    print("str_md5:",str_md5)             # admin md5加密生成str_md5
+    if str_md5 != query:#然后把生成的str_md5和请求传过来的sign值比较，如果
+                        #相同，则验证通过，反之，不通过；我们看下生成的
+                        # str_md5长什么样；打印一下
+                        #str_md5: 21232f297a57a5a743894a0e4a801fc3
+                        #是这个东西，我们把这个字符串放到请求里面试一下
         return Response({"status_code": 400, "msg": "验签失败"})
     if "luid" not in data:
         return Response({"status_code": 400, "msg": "luid必传"})
