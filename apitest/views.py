@@ -304,7 +304,7 @@ def create_order(request):#这个是创建订单接口，request接受请求实�
     if  not query:#做个非空判断
         return Response({"status_code": 400, "msg": "sign必传"})
     str_md5 = hashlib.md5(b'admin').hexdigest()#这步是使用约定好的字符串
-    print("str_md5:",str_md5)             # admin md5加密生成str_md5
+    #print("str_md5:",str_md5)             # admin md5加密生成str_md5
     if str_md5 != query:#然后把生成的str_md5和请求传过来的sign值比较，如果
                         #相同，则验证通过，反之，不通过；我们看下生成的
                         # str_md5长什么样；打印一下
@@ -313,26 +313,26 @@ def create_order(request):#这个是创建订单接口，request接受请求实�
         return Response({"status_code": 400, "msg": "验签失败"})
     if "luid" not in data:
         return Response({"status_code": 400, "msg": "luid必传"})
-    elif "guestnum" not in data:
-        return Response({"status_code": 400, "msg": "guestnum必传"})
-    elif "checkinday" not in data:
-        return Response({"status_code": 400, "msg": "checkinday必传"})
-    elif "checkoutday" not in data:
-        return Response({"status_code": 400, "msg": "checkoutday必传"})
+    elif "guestNum" not in data:
+        return Response({"status_code": 400, "msg": "guestNum必传"})
+    elif "checkInDate" not in data:
+        return Response({"status_code": 400, "msg": "checkInDate必传"})
+    elif "checkOutDate" not in data:
+        return Response({"status_code": 400, "msg": "checkOutDate必传"})
     elif data["luid"] == "" or data["luid"] == " ":
         return Response({"status_code": 400, "msg": "luid不能为空"})
-    elif data["guestnum"] == "" or data["guestnum"] == " ":
-        return Response({"status_code": 400, "msg": "guestnum不能为空"})
-    elif data["checkinday"] == "" or data["checkinday"] == " ":
-        return Response({"status_code": 400, "msg": "checkinday不能为空"})
-    elif data["checkoutday"] == "" or data["checkoutday"] == " ":
-        return Response({"status_code": 400, "msg": "checkoutday不能为空"})
+    elif data["guestNum"] == "" or data["guestNum"] == " ":
+        return Response({"status_code": 400, "msg": "guestNum不能为空"})
+    elif data["checkInDate"] == "" or data["checkInDate"] == " ":
+        return Response({"status_code": 400, "msg": "checkInDate不能为空"})
+    elif data["checkOutDate"] == "" or data["checkOutDate"] == " ":
+        return Response({"status_code": 400, "msg": "checkOutDate不能为空"})
     else:
         #  房源存在校验
-        luid = data['luid']
-        daynum = datetime.datetime.strptime(data['checkoutday'], '%Y-%m-%d') - datetime.datetime.strptime(data['checkinday'],'%Y-%m-%d')
+        luId = data['luId']
+        daynum = datetime.datetime.strptime(data['checkOutDate'], '%Y-%m-%d') - datetime.datetime.strptime(data['checkInDate'],'%Y-%m-%d')
         id_list = []
-        lodgeinfo = lodgeunitinfo.objects.filter(id=str(luid))
+        lodgeinfo = lodgeunitinfo.objects.filter(id=str(luId))
         dayprice = 0
         allowdays = 0
         for i in lodgeinfo:
@@ -340,8 +340,8 @@ def create_order(request):#这个是创建订单接口，request接受请求实�
             allowdays = i.maxday - i.minday
         for i in lodgeunitinfo.objects.values('id'):
             id_list.append(i['id'])
-        if luid not in id_list:
-            return Response({"status_code": 400, "msg": "房源" + str(luid) + "不存在"})
+        if luId not in id_list:
+            return Response({"status_code": 400, "msg": "房源" + str(luId) + "不存在"})
         elif daynum.days < 1:
             return Response({"status_code": 400, "msg": "入住时间不能晚于离开时间"})
         elif daynum.days > allowdays:
