@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -79,22 +79,22 @@ WSGI_APPLICATION = 'apimadetest.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'apimadetest',
-    #     'USER': 'root',
-    #     'PASSWORD': 'Luoshiling123456.',
-    #     'HOST': '172.17.59.87',
-    #     'PORT': '3307',
-    # }
     'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'apimadetest',
-            'USER': 'root',
-            'PASSWORD': 'luoshiling',
-            'HOST': '127.0.0.1',
-            'PORT': '3306',
-        }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'apimadetest',
+        'USER': 'root',
+        'PASSWORD': 'Luoshiling123456.',
+        'HOST': '172.17.142.244',
+        'PORT': '3307',
+    }
+    # 'default': {
+    #         'ENGINE': 'django.db.backends.mysql',
+    #         'NAME': 'apimadetest',
+    #         'USER': 'root',
+    #         'PASSWORD': 'luoshiling',
+    #         'HOST': '127.0.0.1',
+    #         'PORT': '3306',
+    #     }
 }
 
 #Mac 本地密码：luoshiling
