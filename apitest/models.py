@@ -29,13 +29,13 @@ class order(models.Model):
 
     }
     estate = models.CharField(choices=choice, default='valid', max_length=10, null=False)
-    guestnum = models.IntegerField(default=1, null=False)
-    checkinday = models.CharField(max_length=20, null=False)
-    checkoutday = models.CharField(max_length=20, null=False)
+    guestnNum = models.IntegerField(default=1, null=False)
+    checkInDate = models.CharField(max_length=20, null=False)
+    checkOutDate = models.CharField(max_length=20, null=False)
     create_time = models.DateTimeField(auto_now=True)
     update_time = models.DateTimeField(auto_now=True)
     remarks = models.CharField(max_length=500)
-    luid = models.IntegerField(null=False)
+    luId = models.IntegerField(null=False)
 
 class others_order(models.Model):
     id = models.AutoField(primary_key=True)

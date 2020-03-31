@@ -86,13 +86,13 @@ if __name__ == '__main__':
     #              "image_md5":"sfdgwet4husf98fwiuhfsjkdhwh"
     #             }
     # add_lodgeInfo(info_dict)
-    order_info = {
-        "luid":1,
-        "guestnum":2,
-        "checkinday":"2019-01-03",
-        "checkoutday":"2019-01-04"
-    }
-    add_order(order_info)
+    # order_info = {
+    #     "luid":1,
+    #     "guestnum":2,
+    #     "checkinday":"2019-01-03",
+    #     "checkoutday":"2019-01-04"
+    # }
+    # add_order(order_info)
     # pay_order_info = {
     #     "order_id": 1,
     #     "luid": 1
@@ -103,10 +103,29 @@ if __name__ == '__main__':
     #      "totalprice": 3
     # }
     # others_pay_order(others_pay_order_info)
-    cancel_info = {
-        "order_id": 10
+    # cancel_info = {
+    #     "order_id": 10
+    # }
+    # order_cancel(cancel_info)
+    import requests
+    import hashlib
+    import json
+    ip = '47.93.148.45'
+    sign = hashlib.md5(b'admin').hexdigest()
+    #这是个对房源下单的接口，可以理解为对某个商品下单
+    url = 'http://{}/api_create_order/?sign={}'.format(ip,sign)
+    #sign 使用来验证发起接口请求这一方的身份的。
+    data = {
+        "luid":1, #房源ID，也可以是商品ID
+        "guestnum":2, #房客数量，多少人入住
+        "checkinday":"2019-01-03", #入住日期
+        "checkoutday":"2019-01-04" #离开日期
     }
-    order_cancel(cancel_info)
+    json.dumps(data)
+    print("url",url)
+    re = requests.post(url,json=data)
+    print(re.text)
+
 
 
 
