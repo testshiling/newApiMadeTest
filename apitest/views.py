@@ -319,7 +319,7 @@ def create_order(request):#这个是创建订单接口，request接受请求实�
         return Response({"status_code": 400, "msg": "checkInDate必传"})
     elif "checkOutDate" not in data:
         return Response({"status_code": 400, "msg": "checkOutDate必传"})
-    elif data["luId"] == "" or data["luid"] == " ":
+    elif data["luId"] == "" or data["luId"] == " ":
         return Response({"status_code": 400, "msg": "luId不能为空"})
     elif data["guestNum"] == "" or data["guestNum"] == " ":
         return Response({"status_code": 400, "msg": "guestNum不能为空"})
