@@ -29,7 +29,7 @@ class order(models.Model):
 
     }
     estate = models.CharField(choices=choice, default='valid', max_length=10, null=False)
-    guestnNum = models.IntegerField(default=1, null=False)
+    guestNum = models.IntegerField(default=1, null=False)
     checkInDate = models.CharField(max_length=20, null=False)
     checkOutDate = models.CharField(max_length=20, null=False)
     create_time = models.DateTimeField(auto_now=True)
