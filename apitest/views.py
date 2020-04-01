@@ -311,16 +311,16 @@ def create_order(request):#这个是创建订单接口，request接受请求实�
                         #str_md5: 21232f297a57a5a743894a0e4a801fc3
                         #是这个东西，我们把这个字符串放到请求里面试一下
         return Response({"status_code": 400, "msg": "验签失败"})
-    if "luid" not in data:
-        return Response({"status_code": 400, "msg": "luid必传"})
+    if "luId" not in data:
+        return Response({"status_code": 400, "msg": "luId必传"})
     elif "guestNum" not in data:
         return Response({"status_code": 400, "msg": "guestNum必传"})
     elif "checkInDate" not in data:
         return Response({"status_code": 400, "msg": "checkInDate必传"})
     elif "checkOutDate" not in data:
         return Response({"status_code": 400, "msg": "checkOutDate必传"})
-    elif data["luid"] == "" or data["luid"] == " ":
-        return Response({"status_code": 400, "msg": "luid不能为空"})
+    elif data["luId"] == "" or data["luid"] == " ":
+        return Response({"status_code": 400, "msg": "luId不能为空"})
     elif data["guestNum"] == "" or data["guestNum"] == " ":
         return Response({"status_code": 400, "msg": "guestNum不能为空"})
     elif data["checkInDate"] == "" or data["checkInDate"] == " ":
