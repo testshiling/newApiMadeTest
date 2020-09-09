@@ -27,12 +27,14 @@ import hashlib
 @api_view(http_method_names=['POST'])
 @permission_classes((permissions.AllowAny,))
 def api_demo(request):
-    parameter = request.data
+    parameter = json.loads(request.body)
     id = parameter['data']
     if id == 1:
         data = 'There are three dogs'
     elif id == 2:
         data = 'There are two dogs'
+    elif id == hashlib.md5(bytes("luoshiling",encoding='utf-8')).hexdigest():
+        data = "Got it!"
     else:
         data = 'Thers is nothing'
 
@@ -56,6 +58,7 @@ def login_post(request):
             'msg': "请输入password"
         })
     elif data["username"] == "" or data["username"] == " ":
+        print(data)
         return Response({
             "status_code": 400,
             'msg': "username不能为空"
@@ -76,9 +79,12 @@ def login_post(request):
         password = data['password']
         passwdcheck = check_password(password, user.password)
         if passwdcheck:
+            str_md5 = hashlib.md5(bytes("luoshiling",encoding='utf-8')).hexdigest()
             return Response({
                 "status_code": 200,
-                'msg': "登录成功"
+                'msg': "登录成功",
+                'a':{"b":{"c":1}},
+                'token':str_md5
             })
         else:
             return Response({
